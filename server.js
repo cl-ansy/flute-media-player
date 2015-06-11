@@ -3,6 +3,7 @@ var app = express();
 
 // use dist after tasks are setup
 app.use(express.static('app'));
+app.use('/', 'app/index.html');
 
 var server = app.listen(3000, function (req, res) {
     var host = server.address().address;
