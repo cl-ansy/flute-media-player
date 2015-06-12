@@ -13,7 +13,7 @@ class Section extends React.Component {
     render() {
         return (
             <section style={styles.section}>
-                Section
+                {this.props.selectedFile.name}
             </section>
         );
     }

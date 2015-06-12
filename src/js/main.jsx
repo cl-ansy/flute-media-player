@@ -42,7 +42,7 @@ class Main extends React.Component {
             <div style={styles.container}>
                 <Header selectedFile={this.state.selectedFile} />
                 <Aside handleFileSelect={this.handleFileSelect} />
-                <Section />
+                <Section selectedFile={this.state.selectedFile} />
             </div>
         );
     }
