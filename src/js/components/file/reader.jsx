@@ -8,7 +8,8 @@ var styles = {
 class Reader extends React.Component {
     constructor() {
         super();
-        this._bind('_handleRead');
+        this._bind('_handleFiles');
+        this.state = { files: {} };
     }
 
     // TODO: refactor this into a base class
@@ -16,14 +17,16 @@ class Reader extends React.Component {
         methods.forEach((method) => this[method] = this[method].bind(this));
     }
 
-    _handleRead(e) {
-        console.log(e.target.files);
+    _handleFiles(e) {
+        this.setState({
+            files: e.target.files
+        });
     }
 
     render() {
         return (
             <div style={styles.reader}>
-                <input type='file' id='files' name='files[]' multiple onChange={this._handleRead} />
+                <input type='file' id='files' name='files[]' multiple onChange={this._handleFiles} />
             </div>
         );
     }
