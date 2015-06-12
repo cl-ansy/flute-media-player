@@ -69,7 +69,7 @@ gulp.task('browser-sync', function() {
     browserSync.init(['dist/**/*.*'], {
         proxy: 'http://localhost:3000',
         port: 4000,
-        broswer: ['google-chrome']
+        browser: ['google-chrome']
     });
 });
 
