@@ -1,11 +1,14 @@
 var gulp        = require('gulp');
-var babel       = require('gulp-babel');
-var concat      = require('gulp-concat');
 var nodemon     = require('gulp-nodemon');
 var sequence    = require('gulp-sequence');
 var sourcemaps  = require('gulp-sourcemaps');
+var babelify    = require('babelify');
+var browserify  = require('browserify');
 var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
+var uglify      = require('gulp-uglify');
+var buffer      = require('vinyl-buffer');
+var source      = require('vinyl-source-stream');
 
 
 gulp.task('html', function() {
@@ -14,12 +17,15 @@ gulp.task('html', function() {
 });
 
 gulp.task('js', function() {
-    return gulp.src('src/js/**/*.js')
-        .pipe(sourcemaps.init())
-        .pipe(babel())
-        .pipe(concat('all.js'))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist/js'));
+    browserify('./src/js/main.js', { debug: true })
+    .transform(babelify)
+    .bundle()
+    .pipe(source('all.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('nodemon', function() {
