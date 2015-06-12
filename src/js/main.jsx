@@ -16,14 +16,15 @@ var styles = {
         display: 'flex',
         flex: '1 100%',
         flexFlow: 'row wrap',
-        height: '100%'
+        height: '100%',
+        maxHeight: '100%'
     }
 };
 
 class Main extends React.Component {
     render() {
         return (
-            <div className='container' style={styles.container}>
+            <div style={styles.container}>
                 <Header />
                 <Aside />
                 <Section />

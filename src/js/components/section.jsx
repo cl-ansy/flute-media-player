@@ -4,7 +4,7 @@ var styles = {
     section: {
         flex: '5 auto',
         order: '2',
-        height: '100%',
+        height: '90%',
         backgroundColor: 'rgba(13, 22, 29, 1)'
     }
 };
