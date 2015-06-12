@@ -9,7 +9,6 @@ class Reader extends React.Component {
     constructor() {
         super();
         this._bind('_handleFiles');
-        this.state = { files: {} };
     }
 
     // TODO: refactor this into a base class
@@ -18,9 +17,7 @@ class Reader extends React.Component {
     }
 
     _handleFiles(e) {
-        this.setState({
-            files: e.target.files
-        });
+        this.props.onFileSelect(e.target.files);
     }
 
     render() {
