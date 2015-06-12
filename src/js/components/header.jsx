@@ -12,7 +12,7 @@ class Header extends React.Component {
     render() {
         return (
             <header style={styles.header}>
-                Header
+                {this.props.selectedFile.name}
             </header>
         );
     }

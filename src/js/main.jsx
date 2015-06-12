@@ -22,11 +22,26 @@ var styles = {
 };
 
 class Main extends React.Component {
+    constructor() {
+        super();
+        this._bind('handleFileSelect');
+        this.state = { selectedFile: {} };
+    }
+
+    // TODO: refactor this into a base class
+    _bind(...methods) {
+        methods.forEach((method) => this[method] = this[method].bind(this));
+    }
+
+    handleFileSelect(file) {
+        this.setState({ selectedFile: file });
+    }
+
     render() {
         return (
             <div style={styles.container}>
-                <Header />
-                <Aside />
+                <Header selectedFile={this.state.selectedFile} />
+                <Aside handleFileSelect={this.handleFileSelect} />
                 <Section />
             </div>
         );
