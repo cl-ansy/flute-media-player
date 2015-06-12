@@ -9,7 +9,6 @@ var browserify  = require('browserify');
 var watchify    = require('watchify');
 
 var browserSync = require('browser-sync');
-var reload      = browserSync.reload;
 
 var buffer      = require('vinyl-buffer');
 var source      = require('vinyl-source-stream');
@@ -31,6 +30,10 @@ gulp.task('vendors', function() {
 gulp.task('html', function() {
     return gulp.src('src/*.html')
         .pipe(gulp.dest('dist'));
+});
+
+gulp.task('css', function() {
+
 });
 
 gulp.task('js', function() {
@@ -73,4 +76,4 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('default', sequence(['vendors', 'html', 'js'], 'nodemon', 'watch'));
+gulp.task('default', sequence(['vendors', 'html', 'css', 'js'], 'nodemon', 'watch'));
