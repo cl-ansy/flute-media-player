@@ -1,5 +1,6 @@
 import React    from 'react';
 
+import Header   from './components/header';
 import Aside    from './components/aside';
 import Section  from './components/section';
 
@@ -13,7 +14,8 @@ mountNode.style.height = '100%';
 var styles = {
     container: {
         display: 'flex',
-        flexDirection: 'row',
+        flex: '1 100%',
+        flexFlow: 'row wrap',
         height: '100%'
     }
 };
@@ -22,6 +24,7 @@ class Main extends React.Component {
     render() {
         return (
             <div className='container' style={styles.container}>
+                <Header />
                 <Aside />
                 <Section />
             </div>
