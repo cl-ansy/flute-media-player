@@ -15,11 +15,15 @@
   "bugs": {
     "url": "https://github.com/cslansing/flute-media-player/issues"
   },
-  "dependencies": {
+  "devDependencies": {
     "bower": "^1.4.1",
     "browser-sync": "^2.7.9",
     "express": "^4.12.4",
     "gulp": "^3.9.0",
-    "gulp-nodemon": "^2.0.3"
+    "gulp-babel": "^5.1.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-nodemon": "^2.0.3",
+    "gulp-sequence": "^0.3.2",
+    "gulp-sourcemaps": "^1.5.2"
   }
 }
