@@ -2,6 +2,9 @@ import React from 'react';
 
 var styles = {
     list: {
+        maxHeight: '90%',
+        overflowY: 'scroll',
+        margin: '0.5em'
     }
 };
 

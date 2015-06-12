@@ -2,6 +2,15 @@ import React from 'react';
 
 var styles = {
     reader: {
+        overflow: 'hidden',
+        position: 'relative',
+    },
+    readerInput: {
+        background: 'rgba(113, 142, 164, 1)',
+        overflow: 'hidden',
+        borderRadius: '.2em',
+        padding: '.5em',
+        margin: '.5em'
     }
 };
 
@@ -17,13 +26,13 @@ class Reader extends React.Component {
     }
 
     _handleFiles(e) {
-        this.props.onFileSelect(e.target.files);
+        this.props.onFileAdd(e.target.files);
     }
 
     render() {
         return (
             <div style={styles.reader}>
-                <input type='file' id='files' name='files[]' multiple onChange={this._handleFiles} />
+                <input type='file' id='files' name='files[]' multiple onChange={this._handleFiles} style={styles.readerInput} />
             </div>
         );
     }

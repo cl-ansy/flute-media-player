@@ -15,7 +15,7 @@ var styles = {
 class Aside extends React.Component {
     constructor() {
         super();
-        this._bind('handleFileSelect');
+        this._bind('handleFileAdd');
         this.state = { files: [] };
     }
 
@@ -24,14 +24,14 @@ class Aside extends React.Component {
         methods.forEach((method) => this[method] = this[method].bind(this));
     }
 
-    handleFileSelect(files) {
+    handleFileAdd(files) {
         this.setState({ files: this.state.files.concat([].slice.call(files)) });
     }
 
     render() {
         return (
             <aside style={styles.aside}>
-                <Reader onFileSelect={this.handleFileSelect} />
+                <Reader onFileAdd={this.handleFileAdd} />
                 <List files={this.state.files} />
             </aside>
         );
