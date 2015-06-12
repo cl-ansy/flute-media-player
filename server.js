@@ -7,7 +7,7 @@ app.get('/', function(req, res) {
     res.sendFile('dist/index.html', { root: __dirname });
 });
 
-var server = app.listen(3000, function(req, res) {
+var server = app.listen(3000, function() {
     var host = server.address().address;
     var port = server.address().port;
 
