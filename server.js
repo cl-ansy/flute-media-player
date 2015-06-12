@@ -1,12 +1,11 @@
 var express = require('express');
-var app = express();
+var app     = express();
 
-// use dist after tasks are setup
+app.use(express.static('dist'));
+
 app.get('/', function(req, res) {
-    res.sendFile('src/index.html', { root: __dirname });
+    res.sendFile('dist/index.html', { root: __dirname });
 });
-
-app.use(express.static('src'));
 
 var server = app.listen(3000, function(req, res) {
     var host = server.address().address;
