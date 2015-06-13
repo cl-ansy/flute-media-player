@@ -20,7 +20,8 @@ class List extends React.Component {
         methods.forEach((method) => this[method] = this[method].bind(this));
     }
 
-    _handleClick(file) {
+    _handleClick(file, index) {
+        file.index = index;
         this.props.onFileSelect(file);
     }
 
@@ -29,7 +30,7 @@ class List extends React.Component {
             <ul style={styles.list}>
                 {this.props.files.map((file, i) => {
                     return (
-                        <li key={i} data={file} onClick={this._handleClick.bind(this, file)}>{file.name}</li>
+                        <li key={i} data={file} onClick={this._handleClick.bind(this, file, i)}>{file.name}</li>
                     );
                 })}
             </ul>

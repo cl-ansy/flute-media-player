@@ -5,7 +5,7 @@ import List     from './file/list';
 
 var styles = {
     aside: {
-        flex: '0 1 auto',
+        flex: '1 auto',
         order: '1',
         height: '90%',
         backgroundColor: 'rgba(44, 55, 64, 1)'
