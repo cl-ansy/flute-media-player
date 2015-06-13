@@ -27,7 +27,7 @@ html, body, #app {
     flex: 0 23%;
     order: 1;
     height: 90%;
-    background-color: rgba(44, 55, 64, 1);
+    // background-color: rgba(44, 55, 64, 1);
 }
 
 .comp-section {
@@ -37,7 +37,7 @@ html, body, #app {
     flex: 3 75%;
     order: 2;
     height: 90%;
-    background-color: rgba(13, 22, 29, 1);
+    // background-color: rgba(13, 22, 29, 1);
 }
 
 .comp-file-list {
@@ -50,6 +50,14 @@ html, body, #app {
     li {
         cursor: pointer;
         white-space: nowrap;
+    }
+    li:hover {
+        color: #FFFFFF;
+        background-color: rgba(44, 55, 64, 1);
+    }
+    li[data-state=selected] {
+        color: #FFFFFF;
+        background-color: rgba(0, 0, 0, 1);
     }
 }
 

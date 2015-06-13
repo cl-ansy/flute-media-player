@@ -4,6 +4,7 @@ class List extends React.Component {
     constructor() {
         super();
         this._bind('_handleClick');
+        this.state = { active: {} };
     }
 
     // TODO: refactor this into a base class
@@ -14,6 +15,7 @@ class List extends React.Component {
     _handleClick(file, index) {
         file.index = index;
         this.props.onFileSelect(file);
+        this.setState({ active: file });
     }
 
     render() {
@@ -22,7 +24,7 @@ class List extends React.Component {
                 {this.props.files.map((file, i) => {
                     return (
                         // TODO: abstract list items into separate component ?
-                        <li key={i} onClick={this._handleClick.bind(this, file, i)}>{file.name}</li>
+                        <li key={i} onClick={this._handleClick.bind(this, file, i)} data-state={this.state.active.index === i ? 'selected' : ''}>{file.name}</li>
                     );
                 })}
             </ul>
