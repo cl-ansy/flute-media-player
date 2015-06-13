@@ -1,6 +1,10 @@
 import React from 'react';
 
 var styles = {
+    video: {
+        maxHeight: '100%',
+        maxWidth: '100%'
+    }
 };
 
 class Video extends React.Component {
@@ -23,7 +27,7 @@ class Video extends React.Component {
 
     render() {
         return (
-            <video controls autoplay src={this.loadVideo()}></video>
+            <video controls autoPlay src={this.loadVideo()} style={styles.video}></video>
         );
     }
 }

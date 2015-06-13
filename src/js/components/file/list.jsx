@@ -3,9 +3,14 @@ import React from 'react';
 var styles = {
     list: {
         height: '90%',
-        maxHeight: '90%',
         overflowY: 'auto',
-        margin: '0.5em'
+        overflowX: 'hidden',
+        margin: '0.5em',
+        padding: '0'
+    },
+    listItem: {
+        cursor: 'pointer',
+        whiteSpace: 'nowrap'
     }
 };
 
@@ -30,7 +35,8 @@ class List extends React.Component {
             <ul style={styles.list}>
                 {this.props.files.map((file, i) => {
                     return (
-                        <li key={i} data={file} onClick={this._handleClick.bind(this, file, i)}>{file.name}</li>
+                        // TODO: abstract list items into separate component ?
+                        <li key={i} data={file} onClick={this._handleClick.bind(this, file, i)} style={styles.listItem}>{file.name}</li>
                     );
                 })}
             </ul>

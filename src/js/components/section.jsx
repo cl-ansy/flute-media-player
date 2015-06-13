@@ -3,7 +3,10 @@ import Video    from './player/video';
 
 var styles = {
     section: {
-        flex: '3 auto',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: '3 75%',
         order: '2',
         height: '90%',
         backgroundColor: 'rgba(13, 22, 29, 1)'

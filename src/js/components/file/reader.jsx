@@ -8,9 +8,8 @@ var styles = {
     readerInput: {
         background: 'rgba(113, 142, 164, 1)',
         overflow: 'hidden',
-        borderRadius: '.2em',
-        padding: '.5em',
-        margin: '.5em'
+        width: '100%',
+        height: '100%'
     }
 };
 
