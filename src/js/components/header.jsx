@@ -4,9 +4,9 @@ class Header extends React.Component {
     render() {
         return (
             <header className='comp-header'>
-                <button
+                <button className='btn pure-button'
                     onClick={this.props.handleNavToggle}>
-                    Toggle Nav</button>
+                    <i className='fa fa-bars'></i></button>
                 <h2>{this.props.selectedFile.name}</h2>
             </header>
         );

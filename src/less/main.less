@@ -1,20 +1,21 @@
 @import url(http://fonts.googleapis.com/css?family=Bitter);
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
-@background-dark: rgb(0, 0, 0);
-@background-light: rgb(45, 45, 45);
-@font-dark: rgb(171, 171, 171);
-@font-light: rgb(255, 255, 255);
-@primary: rgb(99, 66, 113);
+@background-primary: rgb(0, 0, 0);
+@background-secondary: rgb(45, 45, 45);
+@font-primary: rgb(171, 171, 171);
+@font-secondary: rgb(255, 255, 255);
+@btn-primary: rgb(99, 66, 113);
 
 body {
     font-family: 'Source Sans Pro', serif;
+    color: @font-primary;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Bitter', sans-serif;
     font-weight: initial;
-    font-color: @font-dark;
+    color: @font-primary;
 }
 
 body, #app, .main {
@@ -32,14 +33,23 @@ body, #app, .main {
 .comp-header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    background-color: @background-primary;
+
+    button {
+        margin-right: 1em;
+    }
 }
 
 .comp-nav {
     flex: 0 0 12em;
     order: -1;
-    background-color: @background-light;
-    // color: @font-dark;
+    background-color: @background-primary;
+
+    button {
+        width: 100%;
+        background-color: @btn-primary;
+    }
 }
 
 .comp-nav[data-state=visible] {
@@ -57,7 +67,7 @@ body, #app, .main {
     align-items: center;
     justify-content: center;
     flex: 1;
-    // background-color: rgba(13, 22, 29, 1);
+    background-color: @background-secondary;
 }
 
 .comp-file-list {
@@ -71,12 +81,12 @@ body, #app, .main {
         padding: 0.2em 0.5em;
     }
     li:hover {
-        // color: #FFFFFF;
-        // background-color: rgba(44, 55, 64, 1);
+        color: @font-secondary;
+        background-color: @background-secondary;
     }
     li[data-state=selected] {
-        // color: #FFFFFF;
-        // background-color: rgba(0, 0, 0, 1);
+        color: @font-secondary;
+        background-color: @background-secondary;
     }
 }
 
@@ -105,9 +115,6 @@ body, #app, .main {
     max-height: 100%;
 }
 
-// // Element Styles
-// .btn {
-// }
-
-// .btn:hover {
-// }
+.btn {
+    border-radius: 0;
+}
