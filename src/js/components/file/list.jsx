@@ -1,19 +1,5 @@
 import React from 'react';
 
-var styles = {
-    list: {
-        height: '90%',
-        overflowY: 'auto',
-        overflowX: 'hidden',
-        margin: '0.5em',
-        padding: '0'
-    },
-    listItem: {
-        cursor: 'pointer',
-        whiteSpace: 'nowrap'
-    }
-};
-
 class List extends React.Component {
     constructor() {
         super();
@@ -32,11 +18,11 @@ class List extends React.Component {
 
     render() {
         return (
-            <ul style={styles.list}>
+            <ul className='comp-file-list'>
                 {this.props.files.map((file, i) => {
                     return (
                         // TODO: abstract list items into separate component ?
-                        <li key={i} data={file} onClick={this._handleClick.bind(this, file, i)} style={styles.listItem}>{file.name}</li>
+                        <li key={i} onClick={this._handleClick.bind(this, file, i)} style={styles.listItem}>{file.name}</li>
                     );
                 })}
             </ul>

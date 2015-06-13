@@ -1,18 +1,5 @@
 import React from 'react';
 
-var styles = {
-    reader: {
-        overflow: 'hidden',
-        position: 'relative',
-    },
-    readerInput: {
-        background: 'rgba(113, 142, 164, 1)',
-        overflow: 'hidden',
-        width: '100%',
-        height: '100%'
-    }
-};
-
 class Reader extends React.Component {
     constructor() {
         super();
@@ -30,8 +17,8 @@ class Reader extends React.Component {
 
     render() {
         return (
-            <div style={styles.reader}>
-                <input type='file' id='files' name='files[]' multiple onChange={this._handleChange} style={styles.readerInput} />
+            <div className='comp-file-reader'>
+                <input type='file' id='files' name='files[]' multiple onChange={this._handleChange} />
             </div>
         );
     }

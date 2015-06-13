@@ -1,4 +1,5 @@
 var gulp        = require('gulp');
+var less        = require('gulp-less');
 var nodemon     = require('gulp-nodemon');
 var sequence    = require('gulp-sequence');
 var sourcemaps  = require('gulp-sourcemaps');
@@ -10,6 +11,7 @@ var watchify    = require('watchify');
 
 var browserSync = require('browser-sync');
 
+var path        = require('path');
 var buffer      = require('vinyl-buffer');
 var source      = require('vinyl-source-stream');
 
@@ -32,8 +34,12 @@ gulp.task('html', function() {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('css', function() {
-
+gulp.task('less', function() {
+    return gulp.src('src/less/**/*.less')
+        .pipe(less({
+            paths: [path.join(__dirname, 'less', 'includes')]
+        }))
+        .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('js', function() {
@@ -66,6 +72,7 @@ gulp.task('nodemon', function() {
 
 gulp.task('watch', ['browser-sync'], function() {
     gulp.watch('src/**/{*.js,*.jsx}', ['js']);
+    gulp.watch('src/**/*.less', ['less']);
 });
 
 gulp.task('browser-sync', function() {
@@ -76,4 +83,4 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('default', sequence(['vendors', 'html', 'css', 'js'], 'nodemon', 'watch'));
+gulp.task('default', sequence(['vendors', 'html', 'less', 'js'], 'nodemon', 'watch'));

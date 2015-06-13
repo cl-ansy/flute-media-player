@@ -1,18 +1,6 @@
 import React    from 'react';
 import Video    from './player/video';
 
-var styles = {
-    section: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: '3 75%',
-        order: '2',
-        height: '90%',
-        backgroundColor: 'rgba(13, 22, 29, 1)'
-    }
-};
-
 const VIDEO = ['video/x-matroska'];
 
 class Section extends React.Component {
@@ -39,7 +27,7 @@ class Section extends React.Component {
 
     render() {
         return (
-            <section style={styles.section}>
+            <section className='comp-section'>
                 {this.getPlayer()}
             </section>
         );
