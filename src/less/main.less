@@ -37,7 +37,7 @@ body, #app, .main {
     background-color: @background-primary;
 
     button {
-        margin-right: 1em;
+        margin: 0.5em;
     }
 }
 
@@ -74,6 +74,7 @@ body, #app, .main {
     overflow-x: hidden;
     overflow-y: auto;
     padding: 0;
+    margin: 0;
 
     li {
         cursor: pointer;
@@ -93,11 +94,13 @@ body, #app, .main {
 .comp-file-reader {
     overflow: hidden;
     position: relative;
+    margin: 0.5em;
 
     input {
         font-size: 200px;
         position: absolute;
         top: 0;
+        bottom: 0;
         right: 0;
         opacity: 0;
     }
