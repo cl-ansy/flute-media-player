@@ -1,7 +1,7 @@
 import React    from 'react';
 import Video    from './player/video';
 
-const VIDEO = ['video/x-matroska'];
+const VIDEO = ['video/x-matroska', 'video/mp4'];
 
 class Section extends React.Component {
     constructor() {
