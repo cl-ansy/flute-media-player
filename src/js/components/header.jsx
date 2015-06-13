@@ -4,7 +4,7 @@ class Header extends React.Component {
     render() {
         return (
             <header className='comp-header'>
-                {this.props.selectedFile.name}
+                <h2>{this.props.selectedFile.name}</h2>
             </header>
         );
     }
