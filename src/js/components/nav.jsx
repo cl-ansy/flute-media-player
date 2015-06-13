@@ -25,7 +25,7 @@ class Nav extends React.Component {
 
     render() {
         return (
-            <nav className='comp-nav' data-state-visible={this.props.showNav}>
+            <nav className='comp-nav' data-state={this.props.navState}>
                 <Reader onFileAdd={this.handleFileAdd} />
                 <List files={this.state.files} onFileSelect={this.handleFileSelect} />
             </nav>

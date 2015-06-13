@@ -10,7 +10,7 @@ class Main extends React.Component {
     constructor() {
         super();
         this._bind('handleFileSelect', 'handleNavToggle');
-        this.state = { selectedFile: {}, showNav: true };
+        this.state = { selectedFile: {}, navState: 'visible' };
     }
 
     // TODO: refactor this into a base class
@@ -23,7 +23,7 @@ class Main extends React.Component {
     }
 
     handleNavToggle() {
-        this.setState({ showNav: !this.state.showNav });
+        this.setState({ navState: this.state.navState === 'visible' ? 'invisible' : 'visible' });
     }
 
     render() {
@@ -35,7 +35,7 @@ class Main extends React.Component {
                 <div className='body'>
                     <Nav
                         handleFileSelect={this.handleFileSelect}
-                        showNav={this.state.showNav} />
+                        navState={this.state.navState} />
                     <Content
                         selectedFile={this.state.selectedFile} />
                 </div>

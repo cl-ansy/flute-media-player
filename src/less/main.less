@@ -38,8 +38,18 @@ body, #app, .main {
 .comp-nav {
     flex: 0 0 12em;
     order: -1;
-    // background-color: @background-light;
+    background-color: @background-light;
     // color: @font-dark;
+}
+
+.comp-nav[data-state=visible] {
+    max-width: 100%;
+    transition: max-width 0.3s;
+}
+
+.comp-nav[data-state=invisible] {
+    max-width: 0;
+    transition: max-width 0.3s;
 }
 
 .comp-main {
