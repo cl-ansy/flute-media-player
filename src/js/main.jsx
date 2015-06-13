@@ -1,16 +1,16 @@
 import React    from 'react';
 
 import Header   from './components/header';
-import Aside    from './components/aside';
-import Section  from './components/section';
+import Nav    from './components/nav';
+import Content  from './components/content';
 
 var mountNode = document.getElementById('app');
 
 class Main extends React.Component {
     constructor() {
         super();
-        this._bind('handleFileSelect');
-        this.state = { selectedFile: {} };
+        this._bind('handleFileSelect', 'handleNavToggle');
+        this.state = { selectedFile: {}, showNav: true };
     }
 
     // TODO: refactor this into a base class
@@ -22,12 +22,23 @@ class Main extends React.Component {
         this.setState({ selectedFile: file });
     }
 
+    handleNavToggle() {
+        this.setState({ showNav: !this.state.showNav });
+    }
+
     render() {
         return (
             <div className='main'>
-                <Header selectedFile={this.state.selectedFile} />
-                <Aside handleFileSelect={this.handleFileSelect} />
-                <Section selectedFile={this.state.selectedFile} />
+                <Header
+                    selectedFile={this.state.selectedFile}
+                    handleNavToggle={this.handleNavToggle} />
+                <div className='body'>
+                    <Nav
+                        handleFileSelect={this.handleFileSelect}
+                        showNav={this.state.showNav} />
+                    <Content
+                        selectedFile={this.state.selectedFile} />
+                </div>
             </div>
         );
     }

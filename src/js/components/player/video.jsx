@@ -20,7 +20,9 @@ class Video extends React.Component {
 
     render() {
         return (
-            <video controls autoPlay src={this.loadVideo()} className='comp-player-video'></video>
+            <video controls autoPlay
+                src={this.loadVideo()}
+                className='comp-player-video'></video>
         );
     }
 }

@@ -3,7 +3,7 @@ import React    from 'react';
 import Reader   from './file/reader';
 import List     from './file/list';
 
-class Aside extends React.Component {
+class Nav extends React.Component {
     constructor() {
         super();
         this._bind('handleFileAdd', 'handleFileSelect');
@@ -25,12 +25,12 @@ class Aside extends React.Component {
 
     render() {
         return (
-            <aside className='comp-aside'>
+            <nav className='comp-nav' data-state-visible={this.props.showNav}>
                 <Reader onFileAdd={this.handleFileAdd} />
                 <List files={this.state.files} onFileSelect={this.handleFileSelect} />
-            </aside>
+            </nav>
         );
     }
 }
 
-export default Aside;
+export default Nav;

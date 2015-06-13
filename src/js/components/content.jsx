@@ -3,7 +3,7 @@ import Video    from './player/video';
 
 const VIDEO = ['video/x-matroska', 'video/mp4'];
 
-class Section extends React.Component {
+class Content extends React.Component {
     constructor() {
         super();
         this._bind('getPlayer');
@@ -12,6 +12,10 @@ class Section extends React.Component {
     // TODO: refactor this into a base class
     _bind(...methods) {
         methods.forEach((method) => this[method] = this[method].bind(this));
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.selectedFile.name !== nextProps.selectedFile.name;
     }
 
     getPlayer() {
@@ -27,11 +31,11 @@ class Section extends React.Component {
 
     render() {
         return (
-            <section className='comp-section'>
+            <main className='comp-main'>
                 {this.getPlayer()}
-            </section>
+            </main>
         );
     }
 }
 
-export default Section;
+export default Content;

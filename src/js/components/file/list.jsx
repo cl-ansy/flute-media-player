@@ -24,7 +24,10 @@ class List extends React.Component {
                 {this.props.files.map((file, i) => {
                     return (
                         // TODO: abstract list items into separate component ?
-                        <li key={i} onClick={this._handleClick.bind(this, file, i)} data-state={this.state.active.index === i ? 'selected' : ''}>{file.name}</li>
+                        <li key={i}
+                            onClick={this._handleClick.bind(this, file, i)}
+                            data-state={this.state.active.index === i ? 'selected' : ''}>
+                            {file.name}</li>
                     );
                 })}
             </ul>
