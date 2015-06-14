@@ -17,7 +17,7 @@ const AUDIO = [
 class Content extends React.Component {
     constructor() {
         super();
-        this._bind('getPlayer');
+        this._bind('getPlayer', 'handleMediaEnd');
     }
 
     // TODO: refactor this into a base class
@@ -29,15 +29,19 @@ class Content extends React.Component {
         return this.props.selectedFile.name !== nextProps.selectedFile.name;
     }
 
+    handleMediaEnd() {
+        console.log('poop2');
+    }
+
     getPlayer() {
         var file = this.props.selectedFile;
         var player;
 
         if (VIDEO.indexOf(file.type) !== -1) {
-            player = <Video file={file} />
+            player = <Video file={file} handleFileEnd={this.handleFileEnd} />
         }
         else if (AUDIO.indexOf(file.type) !== -1) {
-            player = <Audio file={file} />
+            player = <Audio file={file} handleMediaEnd={this.handleMediaEnd} />
         }
 
         return player;

@@ -12,7 +12,14 @@ Take advantage of browser media encoding to play files in a queue.
 Play local files easily with Chromecast via tab casting, woo.
 
 
-v1.0.0 TODO - 
-1) Audio
-2) Autoplay
-3) Chromecast support
+
+v1.0.0 - Audio, Video, Image, Autoplay
+
+
+v1.5.0 - Chromecast
+
+
+v2.0.0 - locaStorage
+
+
+v3.0.0 - Integrations

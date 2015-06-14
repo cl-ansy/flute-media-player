@@ -3,12 +3,26 @@ import React    from 'react';
 class Video extends React.Component {
     constructor() {
         super();
-        this._bind('loadVideo');
+        this._bind('loadVideo', 'handleMediaEnd');
     }
 
     // TODO: refactor this into a base class
     _bind(...methods) {
         methods.forEach((method) => this[method] = this[method].bind(this));
+    }
+
+    componentDidMount() {
+        var videoEl = this.refs.video.getDOMNode();
+        videoEl.addEventListener('ended', this.handleMediaEnd);
+    }
+
+    componentWillUnmount() {
+        var videoEl = this.refs.video.getDOMNode();
+        videoEl.removeEventListener('ended', this.handleMediaEnd);
+    }
+
+    handleMediaEnd() {
+        this.props.handleMediaEnd();
     }
 
     loadVideo() {
@@ -21,6 +35,7 @@ class Video extends React.Component {
     render() {
         return (
             <video controls autoPlay
+                ref='video'
                 src={this.loadVideo()}
                 className='comp-player-video'></video>
         );

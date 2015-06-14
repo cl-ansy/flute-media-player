@@ -1,10 +1,13 @@
-import React from 'react';
+import React    from 'react';
+import Options  from './options';
 
 class List extends React.Component {
     constructor() {
         super();
-        this._bind('_handleFileClick');
-        this.state = { active: {} };
+        this._bind(
+            '_handleRemoveClick',
+            '_handleFileClick',
+            'handleAutoplayChange');
     }
 
     // TODO: refactor this into a base class
@@ -12,16 +15,24 @@ class List extends React.Component {
         methods.forEach((method) => this[method] = this[method].bind(this));
     }
 
+    componentDidMount() {
+        //get files from localStorage
+    }
+
+    componentWillUnmount() {
+        //save files to localStorage
+    }
+
     _handleRemoveClick(fileIndex) {
         this.props.handleFileRemove(fileIndex);
-        if (fileIndex === this.state.active.index) {
-            this.setState({ active: {} });
-        }
     }
 
     _handleFileClick(file, index) {
         this.props.handleFileSelect(file);
-        this.setState({ active: file });
+    }
+
+    handleAutoplayChange(bool) {
+        this.props.handleAutoplayChange(bool);
     }
 
     render() {
@@ -38,8 +49,9 @@ class List extends React.Component {
                                 onClick={this._handleRemoveClick.bind(this, i)}>
                             </i>
                             <div
+                                className='item-name'
                                 onClick={this._handleFileClick.bind(this, file, i)}
-                                data-state={this.state.active.index === i ? 'selected' : ''}>{file.name}
+                                data-state={this.props.selectedFile.index === i ? 'selected' : ''}>{file.name}
                             </div>
                         </li>
                     );
@@ -55,6 +67,9 @@ class List extends React.Component {
         return (
             <div className='comp-file-list'>
                 {list}
+                <Options
+                    handleAutoplayChange={this.handleAutoplayChange}
+                    autoplay={this.props.options.autoplay} />
             </div>
         );
     }

@@ -3,7 +3,7 @@
 
 @background-primary: rgb(43, 43, 43);
 @background-secondary: rgb(153, 153, 153);
-@background-tertiary: rgb(246, 246, 246);
+@background-tertiary: rgb(230, 230, 230);
 @font-primary: rgb(246, 246, 246);
 @font-secondary: rgb(43, 43, 43);
 @font-tertiary: rgb(100, 100, 100);
@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 
 body, #app, .main {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
     flex-direction: column;
 }
 
@@ -38,6 +38,7 @@ body, #app, .main {
     position: relative;
     align-items: center;
     justify-content: center;
+    height: 3em;
     z-index: 1;
     background-color: @background-primary;
     box-shadow: 0 0 0.5em 0.4em rgba(0, 0, 0, 0.25);
@@ -56,21 +57,11 @@ body, #app, .main {
     z-index: 2;
     background-color: @background-primary;
 
-    button {
+    .add-media-button {
         width: 100%;
         border-radius: 0.2em;
         background-color: @btn-primary;
     }
-}
-
-.comp-nav[data-state=visible] {
-    max-width: 100%;
-    transition: max-width 0.3s;
-}
-
-.comp-nav[data-state=invisible] {
-    max-width: 0;
-    transition: max-width 0.3s;
 }
 
 .comp-main {
@@ -118,7 +109,7 @@ body, #app, .main {
         }
     }
 
-    div:hover:not(.no-media) {
+    .item-name:hover {
         color: @font-secondary;
         background-color: @background-secondary;
     }
@@ -156,6 +147,25 @@ body, #app, .main {
     }
 }
 
+.comp-file-options {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    .options-button {
+        z-index: 1;
+        background-color: transparent;
+    }
+
+    .options-form {
+        z-index: 2;
+        background-color: @background-tertiary;
+        color: @font-secondary;
+        box-shadow: 0 0 0.5em 0.4em rgba(0, 0, 0, 0.25);
+        padding: 2em;
+    }
+}
+
 .comp-file-reader:hover {
     button {
         // background: #277db3;
@@ -170,4 +180,19 @@ body, #app, .main {
 
 .btn {
     border-radius: 0;
+}
+
+
+// Visibility Animation
+[data-state=visible] {
+    max-width: 100% !important;
+    transition: all 0.3s;
+}
+
+[data-state=invisible] {
+    overflow: hidden;
+    max-width: 0 !important;
+    padding: 0 !important;
+    box-shadow: 0 0 0 0 !important;
+    transition: all 0.3s;
 }

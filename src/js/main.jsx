@@ -1,7 +1,7 @@
 import React    from 'react';
 
 import Header   from './components/header';
-import Nav    from './components/nav';
+import Nav      from './components/nav';
 import Content  from './components/content';
 
 var mountNode = document.getElementById('app');

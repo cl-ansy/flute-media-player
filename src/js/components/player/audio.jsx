@@ -3,12 +3,26 @@ import React    from 'react';
 class Audio extends React.Component {
     constructor() {
         super();
-        this._bind('loadAudio');
+        this._bind('loadAudio', 'handleMediaEnd');
     }
 
     // TODO: refactor this into a base class
     _bind(...methods) {
         methods.forEach((method) => this[method] = this[method].bind(this));
+    }
+
+    componentDidMount() {
+        var audioEl = this.refs.audio.getDOMNode();
+        audioEl.addEventListener('ended', this.handleMediaEnd);
+    }
+
+    componentWillUnmount() {
+        var audioEl = this.refs.audio.getDOMNode();
+        audioEl.removeEventListener('ended', this.handleMediaEnd);
+    }
+
+    handleMediaEnd() {
+        this.props.handleMediaEnd();
     }
 
     loadAudio() {
@@ -21,6 +35,7 @@ class Audio extends React.Component {
     render() {
         return (
             <audio controls autoPlay
+                ref='audio'
                 src={this.loadAudio()}
                 className='comp-player-audio'></audio>
         );
