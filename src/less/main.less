@@ -5,7 +5,8 @@
 @background-secondary: rgb(246, 246, 246);
 @font-primary: rgb(246, 246, 246);
 @font-secondary: rgb(43, 43, 43);
-@btn-primary: rgb(221, 27, 27);
+@font-tertiary: rgb(100, 100, 100);
+@btn-primary: rgb(140, 179, 158);
 @btn-secondary: ;
 
 body {
@@ -43,7 +44,7 @@ body, #app, .main {
 }
 
 .comp-nav {
-    flex: 0 0 12em;
+    flex: 0 0 15em;
     order: -1;
     background-color: @background-primary;
 
@@ -77,16 +78,31 @@ body, #app, .main {
     padding: 0;
     margin: 0;
 
+
     li {
+        display:flex;
+        align-items: center;
         cursor: pointer;
         white-space: nowrap;
-        padding: 0.2em 0.5em;
+
+        div {
+            width: 93%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0.1em 0.2em;
+        }
+        i {
+            padding-left: 0.3em;
+            padding-right: 0.1em;
+            width: 7%;
+            color: @font-tertiary;
+        }
     }
-    li:hover {
+    div:hover {
         color: @font-secondary;
         background-color: @background-secondary;
     }
-    li[data-state=selected] {
+    div[data-state=selected] {
         color: @font-secondary;
         background-color: @background-secondary;
     }

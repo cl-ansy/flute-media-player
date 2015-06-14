@@ -6,7 +6,7 @@ import List     from './file/list';
 class Nav extends React.Component {
     constructor() {
         super();
-        this._bind('handleFileAdd', 'handleFileSelect');
+        this._bind('handleFileAdd', 'handleFileSelect', 'handleFileRemove');
         this.state = { files: [] };
     }
 
@@ -23,11 +23,27 @@ class Nav extends React.Component {
         this.props.handleFileSelect(file);
     }
 
+    handleFileRemove(fileIndex) {
+        this.props.handleFileRemove(fileIndex);
+        // not using splice to remove so that the state isnt mutated
+        this.setState({ files: this.state.files.filter(
+            (el, i) => {
+                return i !== fileIndex;
+            })
+        })
+    }
+
     render() {
         return (
-            <nav className='comp-nav' data-state={this.props.navState}>
-                <Reader onFileAdd={this.handleFileAdd} />
-                <List files={this.state.files} onFileSelect={this.handleFileSelect} />
+            <nav
+                className='comp-nav'
+                data-state={this.props.navState}>
+                <Reader
+                    handleFileAdd={this.handleFileAdd} />
+                <List
+                    files={this.state.files}
+                    handleFileSelect={this.handleFileSelect}
+                    handleFileRemove={this.handleFileRemove} />
             </nav>
         );
     }

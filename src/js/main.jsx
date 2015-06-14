@@ -9,7 +9,7 @@ var mountNode = document.getElementById('app');
 class Main extends React.Component {
     constructor() {
         super();
-        this._bind('handleFileSelect', 'handleNavToggle');
+        this._bind('handleFileSelect', 'handleNavToggle', 'handleFileRemove');
         this.state = { selectedFile: {}, navState: 'visible' };
     }
 
@@ -26,6 +26,12 @@ class Main extends React.Component {
         this.setState({ navState: this.state.navState === 'visible' ? 'invisible' : 'visible' });
     }
 
+    handleFileRemove(fileIndex) {
+        if (this.state.selectedFile.index === fileIndex) {
+            this.setState({ selectedFile: {} });
+        }
+    }
+
     render() {
         return (
             <div className='main'>
@@ -35,6 +41,7 @@ class Main extends React.Component {
                 <div className='body'>
                     <Nav
                         handleFileSelect={this.handleFileSelect}
+                        handleFileRemove={this.handleFileRemove}
                         navState={this.state.navState} />
                     <Content
                         selectedFile={this.state.selectedFile} />

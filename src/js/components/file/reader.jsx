@@ -3,7 +3,7 @@ import React from 'react';
 class Reader extends React.Component {
     constructor() {
         super();
-        this._bind('_handleChange');
+        this._bind('_handleFileAdd');
     }
 
     // TODO: refactor this into a base class
@@ -11,8 +11,8 @@ class Reader extends React.Component {
         methods.forEach((method) => this[method] = this[method].bind(this));
     }
 
-    _handleChange(e) {
-        this.props.onFileAdd(e.target.files);
+    _handleFileAdd(e) {
+        this.props.handleFileAdd(e.target.files);
     }
 
     render() {
@@ -21,7 +21,7 @@ class Reader extends React.Component {
                 <button className='btn pure-button pure-button-primary'>Add Media</button>
                 <input type='file' id='files' name='files[]'
                     multiple
-                    onChange={this._handleChange} />
+                    onChange={this._handleFileAdd} />
             </div>
         );
     }
