@@ -10,3 +10,9 @@ Hopefully store a reference to those files somewhere in local storage.
 Take advantage of browser media encoding to play files in a queue.
 
 Play local files easily with Chromecast via tab casting, woo.
+
+
+v1.0.0 TODO - 
+1) Audio
+2) Autoplay
+3) Chromecast support
