@@ -6,7 +6,9 @@ class Options extends React.Component {
         this._bind(
             'handleCogClick',
             'handleOptionChange');
-        this.state = { formState: 'invisible' };
+        this.state = {
+            formState: 'invisible'
+        };
     }
 
     // TODO: refactor this into a base class

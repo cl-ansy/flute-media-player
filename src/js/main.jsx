@@ -64,7 +64,7 @@ class Main extends React.Component {
     handleMediaEnd() {
         var nextFile = this.state.files[this.state.selectedFile.index + 1];
 
-        if (nextFile) {
+        if (nextFile && this.state.options.autoplay) {
             console.log('playing next file');
             this.setState({
                 selectedFile: nextFile
