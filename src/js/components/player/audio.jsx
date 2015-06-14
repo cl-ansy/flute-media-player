@@ -3,7 +3,10 @@ import React    from 'react';
 class Audio extends React.Component {
     constructor() {
         super();
-        this._bind('loadAudio', 'handleMediaEnd');
+        this._bind(
+            'loadAudio',
+            'handleMediaLoaded',
+            'handleMediaEnd');
     }
 
     // TODO: refactor this into a base class
@@ -13,12 +16,18 @@ class Audio extends React.Component {
 
     componentDidMount() {
         var audioEl = this.refs.audio.getDOMNode();
+        audioEl.addEventListener('loadeddata', this.handleMediaLoaded);
         audioEl.addEventListener('ended', this.handleMediaEnd);
     }
 
     componentWillUnmount() {
         var audioEl = this.refs.audio.getDOMNode();
+        audioEl.removeEventListener('loadeddata', this.handleMediaLoaded);
         audioEl.removeEventListener('ended', this.handleMediaEnd);
+    }
+
+    handleMediaLoaded() {
+        console.log('audio file loaded');
     }
 
     handleMediaEnd() {

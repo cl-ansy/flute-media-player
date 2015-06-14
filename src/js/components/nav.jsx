@@ -11,13 +11,7 @@ class Nav extends React.Component {
             'handleFileAdd',
             'handleFileSelect',
             'handleFileRemove',
-            'handleAutoplayChange');
-        this.state = {
-            files: [],
-            options: {
-                autoPlay: false
-            }
-        };
+            'handleOptionChange');
     }
 
     // TODO: refactor this into a base class
@@ -26,7 +20,7 @@ class Nav extends React.Component {
     }
 
     handleFileAdd(files) {
-        this.setState({ files: this.state.files.concat([].slice.call(files)) });
+        this.props.handleFileAdd(files);
     }
 
     handleFileSelect(file) {
@@ -35,21 +29,10 @@ class Nav extends React.Component {
 
     handleFileRemove(fileIndex) {
         this.props.handleFileRemove(fileIndex);
-        // not using splice to remove so that the state isnt mutated
-        this.setState({
-            files: this.state.files
-                .filter((el, i) => {
-                    return i !== fileIndex;
-                }),
-        })
     }
 
-    handleAutoplayChange(bool) {
-        this.setState({
-            options: {
-                autoplay: bool
-            }
-        });
+    handleOptionChange(option, value) {
+        this.props.handleOptionChange(option, value);
     }
 
     render() {
@@ -60,13 +43,13 @@ class Nav extends React.Component {
                 <Reader
                     handleFileAdd={this.handleFileAdd} />
                 <List
-                    files={this.state.files}
+                    files={this.props.files}
                     selectedFile={this.props.selectedFile}
                     handleFileSelect={this.handleFileSelect}
                     handleFileRemove={this.handleFileRemove} />
                 <Options
-                    options={this.state.options}
-                    handleAutoplayChange={this.handleAutoplayChange} />
+                    options={this.props.options}
+                    handleOptionChange={this.handleOptionChange} />
             </nav>
         );
     }

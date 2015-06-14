@@ -4,7 +4,8 @@ import Audio    from './player/audio';
 
 const VIDEO = [
     'video/x-matroska',
-    'video/mp4'
+    'video/mp4',
+    'video/avi'
 ];
 const AUDIO = [
     'audio/mp3',
@@ -30,7 +31,7 @@ class Content extends React.Component {
     }
 
     handleMediaEnd() {
-        console.log('poop2');
+        this.props.handleMediaEnd();
     }
 
     getPlayer() {
@@ -38,10 +39,16 @@ class Content extends React.Component {
         var player;
 
         if (VIDEO.indexOf(file.type) !== -1) {
-            player = <Video file={file} handleFileEnd={this.handleFileEnd} />
+            player = <Video
+                        file={file}
+                        handleFileEnd={this.handleFileEnd}
+                        handleMediaEnd={this.handleMediaEnd} />
         }
         else if (AUDIO.indexOf(file.type) !== -1) {
-            player = <Audio file={file} handleMediaEnd={this.handleMediaEnd} />
+            player = <Audio
+                        file={file}
+                        handleMediaEnd={this.handleMediaEnd}
+                        handleMediaEnd={this.handleMediaEnd} />
         }
 
         return player;

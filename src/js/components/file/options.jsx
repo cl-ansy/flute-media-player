@@ -3,7 +3,9 @@ import React    from 'react';
 class Options extends React.Component {
     constructor() {
         super();
-        this._bind('handleCogClick', 'handleAutoplayChange');
+        this._bind(
+            'handleCogClick',
+            'handleOptionChange');
         this.state = { formState: 'invisible' };
     }
 
@@ -16,8 +18,8 @@ class Options extends React.Component {
         this.setState({ formState: this.state.formState === 'visible' ? 'invisible' : 'visible' });
     }
 
-    handleAutoplayChange(e) {
-        this.props.handleAutoplayChange(!this.props.options.autoplay);
+    handleOptionChange(e) {
+        this.props.handleOptionChange(e.target.id, !this.props.options.autoplay);
     }
 
     render() {
@@ -27,7 +29,7 @@ class Options extends React.Component {
                     data-state={this.state.formState}>
                     <label htmlFor="autoplay" className="pure-checkbox">
                         <input id="autoplay" type="checkbox" checked={this.props.options.autoplay}
-                            onChange={this.handleAutoplayChange} />
+                            onChange={this.handleOptionChange} />
                         Autoplay
                     </label>
                 </form>

@@ -3,7 +3,10 @@ import React    from 'react';
 class Video extends React.Component {
     constructor() {
         super();
-        this._bind('loadVideo', 'handleMediaEnd');
+        this._bind(
+            'loadVideo',
+            'handleMediaLoaded',
+            'handleMediaEnd');
     }
 
     // TODO: refactor this into a base class
@@ -13,12 +16,18 @@ class Video extends React.Component {
 
     componentDidMount() {
         var videoEl = this.refs.video.getDOMNode();
+        videoEl.addEventListener('loadeddata', this.handleMediaLoaded);
         videoEl.addEventListener('ended', this.handleMediaEnd);
     }
 
     componentWillUnmount() {
         var videoEl = this.refs.video.getDOMNode();
+        videoEl.removeEventListener('loadeddata', this.handleMediaLoaded);
         videoEl.removeEventListener('ended', this.handleMediaEnd);
+    }
+
+    handleMediaLoaded() {
+        console.log('video file loaded');
     }
 
     handleMediaEnd() {

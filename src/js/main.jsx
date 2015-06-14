@@ -11,11 +11,18 @@ class Main extends React.Component {
         super();
         this._bind(
             'handleFileSelect',
+            'handleFileAdd',
+            'handleFileRemove',
             'handleNavToggle',
-            'handleFileRemove');
+            'handleOptionChange',
+            'handleMediaEnd');
         this.state = {
+            files: [],
             selectedFile: {},
-            navState: 'visible'
+            navState: 'visible',
+            options: {
+                autoPlay: false
+            }
         };
     }
 
@@ -28,13 +35,40 @@ class Main extends React.Component {
         this.setState({ selectedFile: file });
     }
 
+    handleFileAdd(files) {
+        this.setState({ files: this.state.files.concat([].slice.call(files)) });
+    }
+
+    handleFileRemove(fileIndex) {
+        this.setState({
+            files: this.state.files
+                // not using splice to remove so that the state isnt mutated
+                .filter((el, i) => {
+                    return i !== fileIndex;
+                }),
+            selectedFile: this.state.selectedFile.index === fileIndex ? {} : this.state.selectedFile
+        });
+    }
+
     handleNavToggle() {
         this.setState({ navState: this.state.navState === 'visible' ? 'invisible' : 'visible' });
     }
 
-    handleFileRemove(fileIndex) {
-        if (this.state.selectedFile.index === fileIndex) {
-            this.setState({ selectedFile: {} });
+    handleOptionChange(option, value) {
+        var options = {};
+
+        options[option] = value;
+        this.setState(options);
+    }
+
+    handleMediaEnd() {
+        var nextFile = this.state.files[this.state.selectedFile.index + 1];
+
+        if (nextFile) {
+            console.log('playing next file');
+            this.setState({
+                selectedFile: nextFile
+            });
         }
     }
 
@@ -46,12 +80,17 @@ class Main extends React.Component {
                     handleNavToggle={this.handleNavToggle} />
                 <div className='body'>
                     <Nav
-                        navState={this.state.navState}
+                        files={this.state.files}
                         selectedFile={this.state.selectedFile}
+                        navState={this.state.navState}
+                        options={this.state.options}
+                        handleOptionChange={this.handleOptionChange}
                         handleFileSelect={this.handleFileSelect}
+                        handleFileAdd={this.handleFileAdd}
                         handleFileRemove={this.handleFileRemove} />
                     <Content
-                        selectedFile={this.state.selectedFile} />
+                        selectedFile={this.state.selectedFile}
+                        handleMediaEnd={this.handleMediaEnd} />
                 </div>
             </div>
         );
