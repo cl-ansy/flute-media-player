@@ -48,7 +48,7 @@ class List extends React.Component {
         } else {
             list = <div className='no-media'>
                 <i className='fa fa-long-arrow-up'></i>
-                <p>Add some files to get started.</p>
+                <p>Add some media files to get started.</p>
             </div>;
         }
 
