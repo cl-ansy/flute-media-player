@@ -82,11 +82,12 @@ body, #app, .main {
 }
 
 .comp-file-list {
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: 0;
-    margin: 0;
-
+    ul {
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 0;
+        margin: 0;
+    }
 
     li {
         display:flex;
@@ -100,25 +101,37 @@ body, #app, .main {
             text-overflow: ellipsis;
             padding: 0.1em 0.2em;
         }
+
         i {
             padding-left: 0.3em;
             padding-right: 0.1em;
             width: 7%;
             color: @font-tertiary;
-            transition: all 0.5s ease-out;
+            transition: all 0.1s ease-out;
         }
+
         i:hover {
             color: @font-primary;
             transform: scale(1.2);
         }
     }
-    div:hover {
+
+    div:hover:not(.no-media) {
         color: @font-secondary;
         background-color: @background-secondary;
     }
+
     div[data-state=selected] {
         color: @font-secondary;
         background-color: @background-secondary;
+    }
+
+    .no-media {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 3em;
+        padding: 1em 0.2em;
     }
 }
 

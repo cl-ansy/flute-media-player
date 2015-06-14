@@ -25,11 +25,11 @@ class List extends React.Component {
     }
 
     render() {
-        return (
-            <ul className='comp-file-list'>
+        var list;
+        if (this.props.files.length) {
+            list = <ul>
                 {this.props.files.map((file, i) => {
                     file.index = i;
-
                     return (
                         // TODO: abstract list items into separate component ?
                         <li key={i}>
@@ -44,7 +44,18 @@ class List extends React.Component {
                         </li>
                     );
                 })}
-            </ul>
+            </ul>;
+        } else {
+            list = <div className='no-media'>
+                <i className='fa fa-long-arrow-up'></i>
+                <p>Add some files to get started.</p>
+            </div>;
+        }
+
+        return (
+            <div className='comp-file-list'>
+                {list}
+            </div>
         );
     }
 }
