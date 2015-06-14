@@ -32,13 +32,12 @@ class List extends React.Component {
 
                     return (
                         // TODO: abstract list items into separate component ?
-                        <li>
+                        <li key={i}>
                             <i
                                 className='fa fa-close'
                                 onClick={this._handleRemoveClick.bind(this, i)}>
                             </i>
                             <div
-                                key={i}
                                 onClick={this._handleFileClick.bind(this, file, i)}
                                 data-state={this.state.active.index === i ? 'selected' : ''}>{file.name}
                             </div>
