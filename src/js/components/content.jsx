@@ -1,7 +1,18 @@
 import React    from 'react';
 import Video    from './player/video';
+import Audio    from './player/audio';
 
-const VIDEO = ['video/x-matroska', 'video/mp4'];
+const VIDEO = [
+    'video/x-matroska',
+    'video/mp4'
+];
+const AUDIO = [
+    'audio/mp3',
+    'audio/wav',
+    'audio/ogg',
+    'audio/opus',
+    'audio/weba'
+];
 
 class Content extends React.Component {
     constructor() {
@@ -24,6 +35,9 @@ class Content extends React.Component {
 
         if (VIDEO.indexOf(file.type) !== -1) {
             player = <Video file={file} />
+        }
+        else if (AUDIO.indexOf(file.type) !== -1) {
+            player = <Audio file={file} />
         }
 
         return player;
