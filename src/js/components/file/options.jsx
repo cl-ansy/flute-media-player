@@ -17,7 +17,7 @@ class Options extends React.Component {
     }
 
     handleAutoplayChange(e) {
-        this.props.handleAutoplayChange(!this.props.autoplay);
+        this.props.handleAutoplayChange(!this.props.options.autoplay);
     }
 
     render() {
@@ -26,7 +26,7 @@ class Options extends React.Component {
                 <form className='options-form'
                     data-state={this.state.formState}>
                     <label htmlFor="autoplay" className="pure-checkbox">
-                        <input id="autoplay" type="checkbox" checked={this.props.autoplay}
+                        <input id="autoplay" type="checkbox" checked={this.props.options.autoplay}
                             onChange={this.handleAutoplayChange} />
                         Autoplay
                     </label>

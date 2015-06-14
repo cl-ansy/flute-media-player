@@ -1,13 +1,11 @@
 import React    from 'react';
-import Options  from './options';
 
 class List extends React.Component {
     constructor() {
         super();
         this._bind(
             '_handleRemoveClick',
-            '_handleFileClick',
-            'handleAutoplayChange');
+            '_handleFileClick');
     }
 
     // TODO: refactor this into a base class
@@ -29,10 +27,6 @@ class List extends React.Component {
 
     _handleFileClick(file, index) {
         this.props.handleFileSelect(file);
-    }
-
-    handleAutoplayChange(bool) {
-        this.props.handleAutoplayChange(bool);
     }
 
     render() {
@@ -67,9 +61,6 @@ class List extends React.Component {
         return (
             <div className='comp-file-list'>
                 {list}
-                <Options
-                    handleAutoplayChange={this.handleAutoplayChange}
-                    autoplay={this.props.options.autoplay} />
             </div>
         );
     }

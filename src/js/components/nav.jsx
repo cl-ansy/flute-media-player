@@ -2,6 +2,7 @@ import React    from 'react';
 
 import Reader   from './file/reader';
 import List     from './file/list';
+import Options  from './file/options';
 
 class Nav extends React.Component {
     constructor() {
@@ -44,7 +45,6 @@ class Nav extends React.Component {
     }
 
     handleAutoplayChange(bool) {
-        console.log(bool);
         this.setState({
             options: {
                 autoplay: bool
@@ -62,9 +62,10 @@ class Nav extends React.Component {
                 <List
                     files={this.state.files}
                     selectedFile={this.props.selectedFile}
-                    options={this.state.options}
                     handleFileSelect={this.handleFileSelect}
-                    handleFileRemove={this.handleFileRemove}
+                    handleFileRemove={this.handleFileRemove} />
+                <Options
+                    options={this.state.options}
                     handleAutoplayChange={this.handleAutoplayChange} />
             </nav>
         );
