@@ -19,7 +19,7 @@ v1.0.0 - Audio, Video, Image, Autoplay
 v1.5.0 - Chromecast
 
 
-v2.0.0 - locaStorage
+v2.0.0 - localStorage
 
 
 v3.0.0 - Integrations
