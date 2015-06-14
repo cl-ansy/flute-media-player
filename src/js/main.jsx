@@ -9,8 +9,14 @@ var mountNode = document.getElementById('app');
 class Main extends React.Component {
     constructor() {
         super();
-        this._bind('handleFileSelect', 'handleNavToggle', 'handleFileRemove');
-        this.state = { selectedFile: {}, navState: 'visible' };
+        this._bind(
+            'handleFileSelect',
+            'handleNavToggle',
+            'handleFileRemove');
+        this.state = {
+            selectedFile: {},
+            navState: 'visible'
+        };
     }
 
     // TODO: refactor this into a base class
@@ -40,9 +46,10 @@ class Main extends React.Component {
                     handleNavToggle={this.handleNavToggle} />
                 <div className='body'>
                     <Nav
+                        navState={this.state.navState}
+                        selectedFile={this.state.selectedFile}
                         handleFileSelect={this.handleFileSelect}
-                        handleFileRemove={this.handleFileRemove}
-                        navState={this.state.navState} />
+                        handleFileRemove={this.handleFileRemove} />
                     <Content
                         selectedFile={this.state.selectedFile} />
                 </div>

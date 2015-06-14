@@ -13,7 +13,6 @@ class Nav extends React.Component {
             'handleAutoplayChange');
         this.state = {
             files: [],
-            selectedFile: {},
             options: {
                 autoPlay: false
             }
@@ -31,7 +30,6 @@ class Nav extends React.Component {
 
     handleFileSelect(file) {
         this.props.handleFileSelect(file);
-        this.setState({ selectedFile: file });
     }
 
     handleFileRemove(fileIndex) {
@@ -42,7 +40,6 @@ class Nav extends React.Component {
                 .filter((el, i) => {
                     return i !== fileIndex;
                 }),
-            selectedFile: fileIndex === this.state.selectedFile.index ? {} : this.state.selectedFile
         })
     }
 
@@ -64,7 +61,7 @@ class Nav extends React.Component {
                     handleFileAdd={this.handleFileAdd} />
                 <List
                     files={this.state.files}
-                    selectedFile={this.state.selectedFile}
+                    selectedFile={this.props.selectedFile}
                     options={this.state.options}
                     handleFileSelect={this.handleFileSelect}
                     handleFileRemove={this.handleFileRemove}
