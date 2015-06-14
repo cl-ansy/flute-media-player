@@ -21,7 +21,7 @@ class Main extends React.Component {
             selectedFile: {},
             navState: 'visible',
             options: {
-                autoPlay: false
+                autoplay: false
             }
         };
     }
@@ -58,7 +58,9 @@ class Main extends React.Component {
         var options = {};
 
         options[option] = value;
-        this.setState(options);
+        this.setState({
+            options: options
+        });
     }
 
     handleMediaEnd() {
