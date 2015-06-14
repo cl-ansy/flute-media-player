@@ -83,4 +83,6 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('default', sequence(['vendors', 'html', 'less', 'js'], 'nodemon', 'watch'));
+gulp.task('build', sequence(['vendors', 'html', 'less', 'js']))
+
+gulp.task('default', sequence('build', 'nodemon', 'watch'));
