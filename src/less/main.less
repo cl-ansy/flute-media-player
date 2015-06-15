@@ -66,10 +66,13 @@ body, #app, .main {
 
 .comp-main {
     display: flex;
-    align-items: center;
     justify-content: center;
     flex: 1;
     background-color: @background-secondary;
+
+    p {
+        align-self: center;
+    }
 }
 
 .comp-file-list {
@@ -111,7 +114,7 @@ body, #app, .main {
 
     .item-name:hover {
         color: @font-secondary;
-        background-color: @background-secondary;
+        background-color: @background-tertiary;
     }
 
     div[data-state=selected] {
@@ -173,9 +176,13 @@ body, #app, .main {
     }
 }
 
-.comp-player-video {
+.comp-player-video, .comp-player-image {
     max-width: 100%;
     max-height: 100%;
+}
+
+.comp-player-image {
+    object-fit: contain;
 }
 
 .btn {
@@ -186,7 +193,6 @@ body, #app, .main {
 // Visibility Animation
 [data-state=visible] {
     max-width: 100% !important;
-    transition: all 0.3s;
 }
 
 [data-state=invisible] {
@@ -194,5 +200,4 @@ body, #app, .main {
     max-width: 0 !important;
     padding: 0 !important;
     box-shadow: 0 0 0 0 !important;
-    transition: all 0.3s;
 }

@@ -1,18 +1,25 @@
 import React    from 'react';
+
 import Video    from './player/video';
 import Audio    from './player/audio';
+import Image    from './player/image';
 
 const VIDEO = [
-    'video/x-matroska',
-    'video/mp4',
-    'video/avi'
+    '.mkv',
+    '.mp4',
+    '.webm',
+    '.avi',
+    '.swf'
 ];
 const AUDIO = [
-    'audio/mp3',
-    'audio/wav',
-    'audio/ogg',
-    'audio/opus',
-    'audio/weba'
+    '.mp3',
+    '.wav',
+    '.ogg'
+];
+const IMAGE = [
+    '.jpg',
+    '.png',
+    '.gif'
 ];
 
 class Content extends React.Component {
@@ -36,19 +43,30 @@ class Content extends React.Component {
 
     getPlayer() {
         var file = this.props.selectedFile;
+        var reExt = /\.[0-9a-z]+$/i;
+        var ext = file.name && file.name.match(/\.[0-9a-z]+$/i)[0].toLowerCase();
         var player;
 
-        if (VIDEO.indexOf(file.type) !== -1) {
+        //TODO: refactor
+        if (!ext) {
+            player = <p></p>
+        }
+        else if (VIDEO.indexOf(ext) !== -1) {
             player = <Video
                         file={file}
-                        handleFileEnd={this.handleFileEnd}
                         handleMediaEnd={this.handleMediaEnd} />
         }
-        else if (AUDIO.indexOf(file.type) !== -1) {
+        else if (AUDIO.indexOf(ext) !== -1) {
             player = <Audio
                         file={file}
-                        handleMediaEnd={this.handleMediaEnd}
                         handleMediaEnd={this.handleMediaEnd} />
+        }
+        else if (IMAGE.indexOf(ext) !== -1) {
+            player = <Image
+                        file={file} />
+            }
+        else {
+            player = <p>Unsupported File Type "{ext}"</p>
         }
 
         return player;
