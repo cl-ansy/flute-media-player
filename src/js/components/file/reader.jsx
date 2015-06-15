@@ -18,7 +18,7 @@ class Reader extends React.Component {
     render() {
         return (
             <div className='comp-file-reader'>
-                <button className='add-media-button btn pure-button pure-button-primary'>Add Media</button>
+                <i className='fa fa-plus'></i>
                 <input type='file' id='files' name='files[]'
                     multiple
                     onChange={this._handleFileAdd} />

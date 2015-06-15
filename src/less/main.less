@@ -8,6 +8,7 @@
 @font-secondary: rgb(43, 43, 43);
 @font-tertiary: rgb(100, 100, 100);
 @btn-primary: rgb(140, 179, 158);
+@btn-selected: rgb(140, 179, 158);
 @btn-secondary: ;
 
 body {
@@ -126,7 +127,7 @@ body, #app, .main {
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 3em;
+        font-size: 1.5em;
         padding: 1em 0.2em;
 
         p {
@@ -136,14 +137,14 @@ body, #app, .main {
 }
 
 .comp-file-reader {
-    overflow: hidden;
     position: relative;
-    margin: 0.5em;
 
     input {
-        font-size: 200px;
         position: absolute;
+        max-height: 100%;
+        max-width: 100%;
         top: 0;
+        left: 0;
         bottom: 0;
         right: 0;
         opacity: 0;
@@ -151,29 +152,38 @@ body, #app, .main {
 }
 
 .comp-file-options {
-    position: absolute;
-    left: 0;
-    bottom: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: baseline;
+    overflow: hidden;
+    position: relative;
+    margin: 0.5em;
+    font-size: 1.5em;
 
-    .options-button {
-        z-index: 1;
-        background-color: transparent;
+    ::-webkit-file-upload-button {
+        max-width: 100%;
+        max-height: 100%;
+        cursor: pointer;
     }
 
-    .options-form {
-        z-index: 2;
-        background-color: @background-tertiary;
-        color: @font-secondary;
-        box-shadow: 0 0 0.5em 0.4em rgba(0, 0, 0, 0.25);
-        padding: 2em;
+    input {
+        cursor: pointer;
+    }
+
+    i {
+        cursor: pointer;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 }
 
-.comp-file-reader:hover {
-    button {
-        // background: #277db3;
-        // text-decoration: none;
-    }
+.comp-file-autoplay[data-state=selected] {
+    color: @btn-selected;
 }
 
 .comp-player-video, .comp-player-image {

@@ -1,6 +1,5 @@
 import React    from 'react';
 
-import Reader   from './file/reader';
 import List     from './file/list';
 import Options  from './file/options';
 
@@ -40,16 +39,15 @@ class Nav extends React.Component {
             <nav
                 className='comp-nav'
                 data-state={this.props.navState}>
-                <Reader
-                    handleFileAdd={this.handleFileAdd} />
+                <Options
+                    options={this.props.options}
+                    handleFileAdd={this.props.handleFileAdd}
+                    handleOptionChange={this.handleOptionChange} />
                 <List
                     files={this.props.files}
                     selectedFile={this.props.selectedFile}
                     handleFileSelect={this.handleFileSelect}
                     handleFileRemove={this.handleFileRemove} />
-                <Options
-                    options={this.props.options}
-                    handleOptionChange={this.handleOptionChange} />
             </nav>
         );
     }
