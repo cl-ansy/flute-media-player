@@ -8,13 +8,15 @@ const VIDEO = [
     '.mkv',
     '.mp4',
     '.webm',
+    'ogv',
     '.avi',
+    '.wmv',
+    '.mpg',
     '.swf'
 ];
 const AUDIO = [
     '.mp3',
-    '.wav',
-    '.ogg'
+    '.wav'
 ];
 const IMAGE = [
     '.jpg',
