@@ -3,7 +3,8 @@ import React from 'react';
 class Reader extends React.Component {
     constructor() {
         super();
-        this._bind('_handleFileAdd');
+        this._bind(
+            '_handleFileAdd');
     }
 
     // TODO: refactor this into a base class
