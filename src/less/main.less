@@ -39,9 +39,9 @@ body, #app, .main {
     position: relative;
     align-items: center;
     justify-content: center;
-    height: 3em;
     z-index: 1;
     background-color: @background-primary;
+    border-bottom: 0.1em solid @background-tertiary;
     box-shadow: 0 0 0.5em 0.4em rgba(0, 0, 0, 0.25);
 
     button {
@@ -57,6 +57,7 @@ body, #app, .main {
     order: -1;
     z-index: 2;
     background-color: @background-primary;
+    overflow-y: auto;
 
     .add-media-button {
         width: 100%;
@@ -77,11 +78,7 @@ body, #app, .main {
 }
 
 .comp-file-list {
-    overflow: hidden;
-
     ul {
-        overflow-x: hidden;
-        overflow-y: auto;
         padding: 0;
         margin: 0;
     }
@@ -104,7 +101,6 @@ body, #app, .main {
             padding-right: 0.1em;
             width: 7%;
             color: @font-tertiary;
-            transition: all 0.1s ease-out;
         }
 
         i:hover {
@@ -210,4 +206,24 @@ body, #app, .main {
     max-width: 0 !important;
     padding: 0 !important;
     box-shadow: 0 0 0 0 !important;
+}
+
+// Scrollbar
+::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: @background-primary;
+}
+
+::-webkit-scrollbar-track
+{
+    // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: @background-primary;
+}
+
+::-webkit-scrollbar-thumb
+{
+    // background-color: #000000;
+    background-color: @background-tertiary;
+    // border: 2px solid #555555;
 }
