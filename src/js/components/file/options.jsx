@@ -1,7 +1,7 @@
 import React    from 'react';
 
-import Reader   from './reader';
-import Autoplay from './autoplay';
+import Reader   from './tools/reader';
+import Autoplay from './tools/autoplay';
 
 class Options extends React.Component {
     constructor() {
@@ -24,6 +24,7 @@ class Options extends React.Component {
             <div className='comp-file-options'>
                 <Reader
                     handleFileAdd={this.props.handleFileAdd} />
+                <i className='fa fa-trash-o'></i>
                 <Autoplay
                     handleOptionChange={this.handleOptionChange}
                     options={this.props.options} />
