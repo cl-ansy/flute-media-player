@@ -9,6 +9,7 @@ class Nav extends React.Component {
         this._bind(
             'handleFileAdd',
             'handleFileSelect',
+            'handleClear',
             'handleFileRemove',
             'handleOptionChange');
     }
@@ -30,6 +31,10 @@ class Nav extends React.Component {
         this.props.handleFileRemove(fileIndex);
     }
 
+    handleClear() {
+        this.props.handleClear();
+    }
+
     handleOptionChange(option, value) {
         this.props.handleOptionChange(option, value);
     }
@@ -41,7 +46,8 @@ class Nav extends React.Component {
                 data-state={this.props.navState}>
                 <Options
                     options={this.props.options}
-                    handleFileAdd={this.props.handleFileAdd}
+                    handleFileAdd={this.handleFileAdd}
+                    handleClear={this.handleClear}
                     handleOptionChange={this.handleOptionChange} />
                 <List
                     files={this.props.files}

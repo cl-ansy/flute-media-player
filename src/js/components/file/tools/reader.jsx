@@ -18,7 +18,7 @@ class Reader extends React.Component {
 
     render() {
         return (
-            <div className='comp-file-reader'>
+            <div className='comp-tools-reader'>
                 <i className='fa fa-plus'></i>
                 <input type='file' id='files' name='files[]'
                     multiple

@@ -13,6 +13,7 @@ class Main extends React.Component {
             'handleFileSelect',
             'handleFileAdd',
             'handleFileRemove',
+            'handleClear',
             'handleNavToggle',
             'handleOptionChange',
             'handleMediaEnd');
@@ -47,6 +48,12 @@ class Main extends React.Component {
                     return i !== fileIndex;
                 }),
             selectedFile: this.state.selectedFile.index === fileIndex ? {} : this.state.selectedFile
+        });
+    }
+
+    handleClear() {
+        this.setState({
+            files: []
         });
     }
 
@@ -86,6 +93,7 @@ class Main extends React.Component {
                         selectedFile={this.state.selectedFile}
                         navState={this.state.navState}
                         options={this.state.options}
+                        handleClear={this.handleClear}
                         handleOptionChange={this.handleOptionChange}
                         handleFileSelect={this.handleFileSelect}
                         handleFileAdd={this.handleFileAdd}

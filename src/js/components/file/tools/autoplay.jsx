@@ -18,7 +18,7 @@ class Autoplay extends React.Component {
 
     render() {
         return (
-            <i id='autoplay' className='comp-file-autoplay fa fa-play-circle-o'
+            <i id='autoplay' className='comp-tools-autoplay fa fa-play-circle-o'
                 data-state={this.props.options.autoplay ? 'selected' : ''}
                 onClick={this.handleOptionChange}></i>
         );
