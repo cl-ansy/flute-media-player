@@ -53,7 +53,8 @@ class Main extends React.Component {
 
     handleClear() {
         this.setState({
-            files: []
+            files: [],
+            selectedFile: {}
         });
     }
 
