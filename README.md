@@ -10,7 +10,7 @@ Take advantage of browser media encoding to play files in a queue.
 Play local files easily with Chromecast via tab casting, woo.
 
 
-
+### Roadmap
 - [x] v1.0.0 - Audio, Video, Image, Autoplay
 - [ ] v1.2.0 - VideoJS - custom video skin + flash fallback for .avi and .swf
 - [ ] v1.5.0 - Chromecast
