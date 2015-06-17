@@ -16,7 +16,8 @@ var buffer      = require('vinyl-buffer');
 var source      = require('vinyl-source-stream');
 
 var vendors = [
-    'react'
+    'react',
+    'video.js'
 ];
 
 gulp.task('vendors', function() {
@@ -26,6 +27,8 @@ gulp.task('vendors', function() {
         })
         .bundle()
         .pipe(source('vendors.js'))
+        .pipe(buffer())
+        .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 });
 
