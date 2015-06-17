@@ -46,6 +46,7 @@ class Video extends React.Component {
             <video controls autoPlay
                 ref='video'
                 src={this.loadVideo()}
+                type={this.props.file.type}
                 className='comp-player-video'></video>
         );
     }

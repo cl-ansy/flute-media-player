@@ -46,6 +46,7 @@ class Audio extends React.Component {
             <audio controls autoPlay
                 ref='audio'
                 src={this.loadAudio()}
+                type={this.props.file.type}
                 className='comp-player-audio'></audio>
         );
     }
