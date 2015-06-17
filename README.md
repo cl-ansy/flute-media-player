@@ -1,13 +1,11 @@
-# flute-media-player
+# Flute Media Player
+
 Browser based media player
 
-Add local media files (image, audio, video, etc) to a webpage to play locally (no upload).
-
-Hopefully store a reference to those files somewhere in local storage.
-
-Take advantage of browser media encoding to play files in a queue.
-
-Play local files easily with Chromecast via tab casting, woo.
+- Add local media files (image, audio, video, etc) to a webpage to play locally (no upload).
+- Store a reference to those files (playlist) somewhere in local storage.
+- Take advantage of browser media encoding to play files in a queue.
+- Play local files easily with Chromecast via tab casting.
 
 
 ### Roadmap
