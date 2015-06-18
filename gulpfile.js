@@ -4,6 +4,7 @@ var nodemon     = require('gulp-nodemon');
 var sequence    = require('gulp-sequence');
 var sourcemaps  = require('gulp-sourcemaps');
 var uglify      = require('gulp-uglify');
+var uglifycss   = require('gulp-uglifycss');
 
 var babelify    = require('babelify');
 var browserify  = require('browserify');
@@ -44,6 +45,15 @@ gulp.task('less', function() {
         .pipe(gulp.dest('dist/css'));
 });
 
+gulp.task('less-prod', function() {
+    return gulp.src('src/less/**/*.less')
+        .pipe(less({
+            paths: [path.join(__dirname, 'less', 'includes')]
+        }))
+        .pipe(uglifycss())
+        .pipe(gulp.dest('dist/css'));
+});
+
 gulp.task('js', function() {
     var stream = watchify(browserify({
         entries: ['./src/js/main.jsx'],
@@ -66,6 +76,26 @@ gulp.task('js', function() {
         .pipe(gulp.dest('dist/js'));
 });
 
+gulp.task('js-prod', function() {
+    var stream = browserify({
+        entries: ['./src/js/main.jsx'],
+        transform: [babelify],
+        debug: false,
+        extensions: ['.jsx'],
+        fullPaths: false
+    });
+
+    vendors.forEach(function (vendor) {
+        stream.external(vendor);
+    });
+
+    return stream.bundle()
+        .pipe(source('all.js'))
+        .pipe(buffer())
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/js'));
+});
+
 gulp.task('nodemon', function() {
     nodemon({
         script: 'server.js'
@@ -85,6 +115,7 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('build', sequence(['vendors', 'html', 'less', 'js']))
+gulp.task('build', sequence(['vendors', 'html', 'less', 'js']));
+gulp.task('prod', sequence(['vendors', 'html', 'less-prod', 'js-prod']));
 
 gulp.task('default', sequence('build', 'nodemon', 'watch'));
