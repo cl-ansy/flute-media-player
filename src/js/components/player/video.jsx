@@ -6,6 +6,7 @@ class Video extends React.Component {
         this._bind(
             'constructVideoEl',
             'destructVideoEl',
+            'loadVideo',
             'handleMediaLoaded',
             'handleMediaEnd');
     }
@@ -20,8 +21,7 @@ class Video extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.destructVideoEl();
-        return this.constructVideoEl(nextProps.file);
+        this.loadVideo(nextProps.file);
     }
 
     componentWillUnmount() {
@@ -53,6 +53,13 @@ class Video extends React.Component {
         while(target.firstChild) {
             target.removeChild(target.firstChild);
         }
+    }
+
+    loadVideo(file) {
+        var videoEl = this.refs.target.getDOMNode().getElementsByTagName('video')[0];
+
+        videoEl.src = URL.createObjectURL(file);
+        videoEl.type = file.type;
     }
 
     handleMediaLoaded() {
