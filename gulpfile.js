@@ -16,8 +16,7 @@ var buffer      = require('vinyl-buffer');
 var source      = require('vinyl-source-stream');
 
 var vendors = [
-    'react',
-    'video.js'
+    'react'
 ];
 
 gulp.task('vendors', function() {
