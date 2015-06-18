@@ -40,6 +40,7 @@ class Video extends React.Component {
         videoEl.addEventListener('loadeddata', this.handleMediaLoaded);
         videoEl.addEventListener('ended', this.handleMediaEnd);
 
+        /* global videojs */
         return videojs(videoEl, {});
     }
 
