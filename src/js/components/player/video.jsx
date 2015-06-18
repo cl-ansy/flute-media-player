@@ -1,10 +1,11 @@
-import React    from 'react';
+import React from 'react';
 
 class Video extends React.Component {
     constructor() {
         super();
         this._bind(
-            'loadVideo',
+            'constructVideoEl',
+            'destructVideoEl',
             'handleMediaLoaded',
             'handleMediaEnd');
     }
@@ -15,15 +16,43 @@ class Video extends React.Component {
     }
 
     componentDidMount() {
-        var videoEl = this.refs.video.getDOMNode();
-        videoEl.addEventListener('loadeddata', this.handleMediaLoaded);
-        videoEl.addEventListener('ended', this.handleMediaEnd);
+        return this.constructVideoEl(this.props.file);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.destructVideoEl();
+        return this.constructVideoEl(nextProps.file);
     }
 
     componentWillUnmount() {
-        var videoEl = this.refs.video.getDOMNode();
+        this.destructVideoEl();
+    }
+
+    constructVideoEl(file) {
+        var wrapper = document.createElement('div');
+        var video = '<video class="video-js vjs-default-skin" controls preload="auto" autoplay height="100%" width="100%" src="' + URL.createObjectURL(file) + '" type="' + file.type + '"></video>';
+
+        wrapper.innerHTML = video;
+        var videoEl = wrapper.firstChild;
+
+        this.refs.target.getDOMNode().appendChild(videoEl);
+
+        videoEl.addEventListener('loadeddata', this.handleMediaLoaded);
+        videoEl.addEventListener('ended', this.handleMediaEnd);
+
+        return videojs(videoEl, {});
+    }
+
+    destructVideoEl() {
+        var target = this.refs.target.getDOMNode();
+        var videoEl = target.getElementsByTagName('video')[0];
+
         videoEl.removeEventListener('loadeddata', this.handleMediaLoaded);
         videoEl.removeEventListener('ended', this.handleMediaEnd);
+
+        while(target.firstChild) {
+            target.removeChild(target.firstChild);
+        }
     }
 
     handleMediaLoaded() {
@@ -34,20 +63,9 @@ class Video extends React.Component {
         this.props.handleMediaEnd();
     }
 
-    loadVideo() {
-        var file = this.props.file;
-        var videoUrl = URL.createObjectURL(file);
-
-        return videoUrl;
-    }
-
     render() {
         return (
-            <video controls autoPlay
-                ref='video'
-                src={this.loadVideo()}
-                type={this.props.file.type}
-                className='comp-player-video'></video>
+            <div className='comp-player-video' ref='target'></div>
         );
     }
 }

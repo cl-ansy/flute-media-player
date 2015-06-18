@@ -23,15 +23,25 @@ h1, h2, h3, h4, h5, h6 {
     color: @font-primary;
 }
 
-body, #app, .main {
+html, body, #app, .main {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#app, .main {
     display: flex;
-    height: 100vh;
     flex-direction: column;
 }
 
+header {
+    height: 3em;
+}
+
 .body {
+    height: ~"calc(100% - 3em - 1px)";
     display: flex;
-    flex: 1;
 }
 
 // Component Styles
@@ -42,7 +52,7 @@ body, #app, .main {
     justify-content: center;
     z-index: 1;
     background-color: @background-primary;
-    border-bottom: 0.1em solid @background-tertiary;
+    border-bottom: 1px solid @background-tertiary;
     box-shadow: 0 0 0.5em 0.4em rgba(0, 0, 0, 0.25);
 
     button {
@@ -68,6 +78,7 @@ body, #app, .main {
 }
 
 .comp-main {
+    height: 100%;
     display: flex;
     justify-content: center;
     flex: 1;
@@ -184,8 +195,8 @@ body, #app, .main {
 }
 
 .comp-player-video, .comp-player-image {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .comp-player-image {
@@ -195,7 +206,6 @@ body, #app, .main {
 .btn {
     border-radius: 0;
 }
-
 
 // Visibility Animation
 [data-state=visible] {
@@ -210,21 +220,21 @@ body, #app, .main {
 }
 
 // Scrollbar
-::-webkit-scrollbar
-{
+::-webkit-scrollbar {
     width: 10px;
     background-color: @background-primary;
 }
 
-::-webkit-scrollbar-track
-{
-    // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+::-webkit-scrollbar-track {
     background-color: @background-primary;
 }
 
-::-webkit-scrollbar-thumb
-{
-    // background-color: #000000;
+::-webkit-scrollbar-thumb {
     background-color: @background-tertiary;
-    // border: 2px solid #555555;
+}
+
+// Video JS Overrides
+.vjs-big-play-button {
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
 }
