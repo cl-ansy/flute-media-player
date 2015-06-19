@@ -1,4 +1,5 @@
 var gulp        = require('gulp');
+var concat      = require('gulp-concat');
 var less        = require('gulp-less');
 var nodemon     = require('gulp-nodemon');
 var sequence    = require('gulp-sequence');
@@ -30,6 +31,13 @@ gulp.task('vendors', function() {
         .pipe(buffer())
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('libs-css', function() {
+    return gulp.src('libs/css/*.css')
+        .pipe(concat('libs.min.css'))
+        .pipe(uglifycss())
+        .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('html', function() {
@@ -115,7 +123,7 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('build', sequence(['vendors', 'html', 'less', 'js']));
-gulp.task('prod', sequence(['vendors', 'html', 'less-prod', 'js-prod']));
+gulp.task('build', sequence(['vendors', 'html', 'less', 'libs-css', 'js']));
+gulp.task('prod', sequence(['vendors', 'html', 'less-prod', 'libs-css', 'js-prod']));
 
 gulp.task('default', sequence('build', 'nodemon', 'watch'));

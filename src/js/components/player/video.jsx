@@ -30,7 +30,7 @@ class Video extends React.Component {
 
     constructVideoEl(file) {
         var wrapper = document.createElement('div');
-        var video = '<video class="video-js vjs-default-skin" controls preload="auto" autoplay height="100%" width="100%" src="' + URL.createObjectURL(file) + '" type="' + file.type + '"></video>';
+        var video = '<video class="video-js vjs-sublime-skin" controls preload="auto" autoplay height="100%" width="100%" src="' + URL.createObjectURL(file) + '" type="' + file.type + '"></video>';
 
         wrapper.innerHTML = video;
         var videoEl = wrapper.firstChild;
