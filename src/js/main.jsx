@@ -1,8 +1,10 @@
-import React    from 'react';
+import React        from 'react';
 
-import Header   from './components/header';
-import Nav      from './components/nav';
-import Content  from './components/content';
+import Header       from './components/header';
+import Nav          from './components/nav';
+import Content      from './components/content';
+
+import mediaStorage from './utils/storage';
 
 var mountNode = document.getElementById('app');
 
@@ -32,8 +34,24 @@ class Main extends React.Component {
         methods.forEach((method) => this[method] = this[method].bind(this));
     }
 
+    componentDidMount() {
+        var self = this;
+
+        mediaStorage.request().then(function(fs) {
+            mediaStorage.read(fs).then(function(entries) {
+                self.setState({ files: entries });
+            });
+        });
+    }
+
     handleFileSelect(file) {
-        this.setState({ selectedFile: file });
+        var self = this;
+
+        if (file.constructor.name === 'FileEntry') {
+            file.file(file => self.setState({ selectedFile: file }));
+        } else {
+            this.setState({ selectedFile: file });
+        }
     }
 
     handleFileAdd(files) {
