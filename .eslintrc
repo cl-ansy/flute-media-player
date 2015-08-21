@@ -1,0 +1,65 @@
+{
+    "env": {
+        "amd": true,
+        "browser": true,
+        "es6": true,
+        "jquery": true,
+        "mocha": true,
+        "node": true
+    },
+
+    "plugins": [
+        "react"
+    ],
+
+    "ecmaFeatures": {
+        "arrowFunctions": true,
+        "binaryLiterals": true,
+        "blockBindings": true,
+        "classes": true,
+        "defaultParams": true,
+        "destructuring": true,
+        "forOf": true,
+        "generators": true,
+        "modules": true,
+        "objectLiteralComputedProperties": true,
+        "objectLiteralDuplicateProperties": true,
+        "objectLiteralShorthandMethods": true,
+        "objectLiteralShorthandProperties": true,
+        "octalLiterals": true,
+        "regexUFlag": true,
+        "regexYFlag": true,
+        "restParams": true,
+        "spread": true,
+        "superInFunctions": true,
+        "templateStrings": true,
+        "unicodeCodePointEscapes": true,
+        "globalReturn": true,
+        "jsx": true
+    },
+
+    "rules": {
+        "no-bitwise": 1,
+        "eqeqeq": 1,
+        "wrap-iife": [1, "any"],
+        "indent": 4,
+        "no-use-before-define": 1,
+        "no-caller": 1,
+        "no-undef": 1,
+        "no-unused-vars": 2,
+        "strict": [1, "function"],
+        "no-extra-strict": 0,
+        "no-multi-spaces": 2,
+        "no-shadow": 0,
+        "no-underscore-dangle": 0,
+        "no-use-before-define": 0,
+        "new-cap": 0,
+        "quotes": [1, "single", "avoid-escape"],
+        "no-extra-boolean-cast": 0,
+        "indent": 4,
+        "yoda": 0,
+        "no-empty": 0,
+        "key-spacing": 0,
+        "dot-notation": [1, {"allowKeywords": false}]
+    }
+}
