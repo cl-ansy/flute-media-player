@@ -54,18 +54,13 @@ class Content extends React.Component {
             player = <p></p>
         }
         else if (VIDEO.indexOf(ext) !== -1) {
-            player = <Video
-                        file={file}
-                        handleMediaEnd={this.handleMediaEnd} />
+            player = <Video file={file} handleMediaEnd={this.handleMediaEnd} />
         }
         else if (AUDIO.indexOf(ext) !== -1) {
-            player = <Audio
-                        file={file}
-                        handleMediaEnd={this.handleMediaEnd} />
+            player = <Audio file={file} handleMediaEnd={this.handleMediaEnd} />
         }
         else if (IMAGE.indexOf(ext) !== -1) {
-            player = <Image
-                        file={file} />
+            player = <Image file={file} />
             }
         else {
             player = <p>Unsupported File Type "{ext}"</p>
