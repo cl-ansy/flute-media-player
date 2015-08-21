@@ -8,7 +8,7 @@ const VIDEO = [
     '.mkv',
     '.mp4',
     '.webm',
-    'ogv',
+    '.ogv',
     '.avi',
     '.wmv',
     '.mpg',
