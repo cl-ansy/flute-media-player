@@ -2,43 +2,52 @@ class MediaStorage {
     request() {
         window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
 
-        return new Promise(function(resolve) {
-            var onInitFs = function(fs) {
-                resolve(fs);
-            };
-
-            var errorHandler = function(error) {
-                console.log(error);
-            };
-
+        return new Promise((resolve, reject) => {
             let requestedBytes = 1024 * 1024 * 10;
+
             navigator.webkitPersistentStorage
-                .requestQuota(requestedBytes, function(grantedBytes) {
-                    window.requestFileSystem(window.PERSISTENT, grantedBytes, onInitFs, errorHandler);
-                }, errorHandler);
+                .requestQuota(requestedBytes, grantedBytes => {
+                    window.requestFileSystem(
+                        window.PERSISTENT,
+                        grantedBytes,
+                        fs => resolve(fs),
+                        error => reject(error));
+                }, error => reject(error));
         });
     }
 
-    read(fs) {
-        var reader = fs.root.createReader();
-
-        return new Promise(function(resolve) {
-            reader.readEntries(function(results) {
-                resolve(results);
-            });
+    read() {
+        return new Promise((resolve, reject) => {
+            this.request().then(fs => {
+                var reader = fs.root.createReader();
+                reader.readEntries(results => resolve(results), error => reject(error));
+            })
         });
     }
 
-    write(fs, files) {
-        for(var file of files) {
-            (function(f) {
-                fs.root.getFile(f.name, { create: true, exclusive: true }, function(entry) {
-                   entry.createWriter(function(writer) {
-                        writer.write(f);
+    write(files) {
+        return new Promise((resolve, reject) => {
+            this.request().then(fs => {
+                for(let file of files) {
+                    fs.root.getFile(file.name, { create: true, exclusive: true }, entry => {
+                        entry.createWriter(writer => {
+                            writer.write(file);
+                            resolve(file);
+                        }, error => reject(error));
                     });
+                }
+            })
+        });
+    }
+
+    remove(fileName) {
+        return new Promise((resolve, reject) => {
+            this.request().then(fs => {
+                fs.root.getFile(fileName, { create: true, exclusive: true }, entry => {
+                    entry.remove(() => resolve('File removed.'), error => reject(error));
                 });
-            })(file);
-        }
+            })
+        });
     }
 }
 

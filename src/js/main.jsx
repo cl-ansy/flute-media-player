@@ -34,16 +34,6 @@ class Main extends React.Component {
         methods.forEach((method) => this[method] = this[method].bind(this));
     }
 
-    componentDidMount() {
-        var self = this;
-
-        mediaStorage.request().then(function(fs) {
-            mediaStorage.read(fs).then(function(entries) {
-                self.setState({ files: entries });
-            });
-        });
-    }
-
     handleFileSelect(file) {
         var self = this;
 
@@ -55,7 +45,8 @@ class Main extends React.Component {
     }
 
     handleFileAdd(files) {
-        this.setState({ files: this.state.files.concat([].slice.call(files)) });
+        files = [].slice.call(files);
+        this.setState({ files: this.state.files.concat(files) });
     }
 
     handleFileRemove(fileIndex) {
